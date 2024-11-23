@@ -23,18 +23,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE Income (" +
                 "incomeID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "userID INTEGER NOT NULL," +
+
                 "incomeType TEXT NOT NULL," +
                 "amount REAL NOT NULL," +
                 "dateReceived TEXT NOT NULL," +
                 "note TEXT," +
                 "createdDate TEXT NOT NULL," +
-                "lastUpdated TEXT," +
-                "FOREIGN KEY (userID) REFERENCES User(userID))");
+                "lastUpdated TEXT)");
 
         db.execSQL("CREATE TABLE Expense (" +
                 "expenseID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "userID INTEGER NOT NULL," +
+
                 "categoryID INTEGER NOT NULL," +
                 "amount REAL NOT NULL," +
                 "dateSpent TEXT NOT NULL," +
@@ -42,39 +41,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "note TEXT," +
                 "createdDate TEXT NOT NULL," +
                 "lastUpdated TEXT," +
-                "FOREIGN KEY (userID) REFERENCES User(userID)," +
+
                 "FOREIGN KEY (categoryID) REFERENCES Category(categoryID))");
 
         db.execSQL("CREATE TABLE Category (" +
                 "categoryID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "userID INTEGER," +
+
                 "categoryName TEXT NOT NULL," +
                 "monthlyLimit REAL," +
                 "createdDate TEXT NOT NULL," +
-                "lastUpdated TEXT," +
-                "FOREIGN KEY (userID) REFERENCES User(userID))");
+                "lastUpdated TEXT)");
 
         db.execSQL("CREATE TABLE SavingGoal (" +
                 "goalID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "userID INTEGER NOT NULL," +
+
                 "goalName TEXT NOT NULL," +
                 "targetAmount REAL NOT NULL," +
                 "savedAmount REAL DEFAULT 0," +
                 "deadline TEXT," +
                 "createdDate TEXT NOT NULL," +
-                "lastUpdated TEXT," +
-                "FOREIGN KEY (userID) REFERENCES User(userID))");
+                "lastUpdated TEXT)");
 
         db.execSQL("CREATE TABLE ReportData (" +
                 "reportID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "userID INTEGER NOT NULL," +
+
                 "reportType TEXT NOT NULL," +
                 "startDate TEXT NOT NULL," +
                 "endDate TEXT NOT NULL," +
                 "totalIncome REAL NOT NULL," +
                 "totalExpense REAL NOT NULL," +
-                "createdDate TEXT NOT NULL," +
-                "FOREIGN KEY (userID) REFERENCES User(userID))");
+                "createdDate TEXT NOT NULL)");
     }
 
     @Override
